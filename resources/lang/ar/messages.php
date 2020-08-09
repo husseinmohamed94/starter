@@ -14,7 +14,12 @@ return [
     */
 
     'hello gus' => 'اهلا بكم ومرحيا',
-    'welcom'   => 'اهلا'
+    'welcom'   => 'اهلا',
+    'offername require' =>'اسم العرض مطلوبا',
+    'offernameunique'  => 'اسم العرض موجود سابقا',
+    'offerpricenumeric' => 'السعر يحب  ن يكون ارقام',
+    'offerpricerequired'=>'السعر مطلوب',
+    'offerdatailsrequire' =>'يجب كتباه التفاصيل ',
 
 
 ];
