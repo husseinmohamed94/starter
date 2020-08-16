@@ -45,26 +45,26 @@
 
             <div class="content">
                 <div class="text-center">
-               {{__('messages.Add Your Offer')}}
+               {{__('messages.edit Your Offer')}}
                 </div>
                     @if(Session::has('success'))
                     <div class="alert alert-success text-center" role="alert">
                       {{Session::get('success')}}
                     </div>
                     @endif
-                <form method="POST" action="{{route('offers.store')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('offers.update',$offer->id)}}">
                     @csrf
                     {{-- <input  name="_token" value="{{csrf_token()}}"> --}}
                     <div class="form-group">
                         <label for="exampleInputEmail1">{{__('messages.offer Name ar')}}</label>
-                        <input type="text" class="form-control" name="name_ar"  placeholder="{{__('messages.offer Name ar')}} ">
+                        <input type="text" class="form-control" name="name_ar" value="{{$offer->name_ar}}"  placeholder="{{__('messages.offer Name ar')}} ">
                         @error('name_ar')
                         <small class="form-text text-danger">{{$message}}</small>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">{{__('messages.offer Name en')}}</label>
-                        <input type="text" class="form-control" name="name_en"  placeholder="{{__('messages.offer Name en')}} ">
+                        <input type="text" class="form-control" name="name_en" value="{{$offer->name_en}}"  placeholder="{{__('messages.offer Name en')}} ">
                         @error('name_en')
                         <small class="form-text text-danger">{{$message}}</small>
                         @enderror
@@ -72,7 +72,7 @@
 
                    <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer Price')}}</label>
-                        <input type="text" class="form-control" name="price" placeholder="{{__('messages.offer Price')}}" >
+                        <input type="text" class="form-control" name="price"  value="{{$offer->price}}" placeholder="{{__('messages.offer Price')}}" >
                        @error('price')
                        <small class="form-text text-danger">{{$message}}</small>
                        @enderror
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer dataitls ar')}}</label>
-                        <input type="text" class="form-control" name="details_ar" placeholder="{{__('messages.offer dataitls ar')}}" >
+                        <input type="text" class="form-control" name="details_ar"  value="{{$offer->details_ar}}" placeholder="{{__('messages.offer dataitls ar')}}" >
                         @error('details_ar')
                         <small class="form-text text-danger">{{$message}}</small>
                         @enderror
@@ -89,16 +89,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">{{__('messages.offer dataitls en')}}</label>
-                        <input type="text" class="form-control" name="details_en" placeholder="{{__('messages.offer dataitls en')}}" >
+                        <input type="text" class="form-control" name="details_en" value="{{$offer->details_en}}"  placeholder="{{__('messages.offer dataitls en')}}" >
                         @error('details_en')
-                        <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-
-                    </div>
- <div class="form-group">
-                        <label for="exampleInputPassword1">{{__('messages.offer photo')}}</label>
-                        <input type="file" class="form-control" name="photo"  >
-                        @error('photo')
                         <small class="form-text text-danger">{{$message}}</small>
                         @enderror
 

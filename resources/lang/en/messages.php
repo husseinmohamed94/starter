@@ -13,14 +13,25 @@ return [
     |
     */
 
-    'hello gus' => 'hello gus welcome',
-    'welcom'   => 'welcom',
-    'offername require' => 'offername required',
-    'offernameunique'  =>'the name is must be unique ',
-    'offerpricenumeric' => 'price numeric',
-    'offerpricerequired'=>'price requed ',
+    'hello gus'                           => 'hello gus welcome',
+    'welcom'                              => 'welcom',
+    'offername require'                   => 'offername required',
+    'offernameunique'                     =>'the name is must be unique ',
+    'offerpricenumeric'                   => 'price numeric',
+    'offerpricerequired'                  =>'price requed ',
 
-    'offerdatailsrequire' =>'must wietter ',
-
-
+    'offerdatailsrequire'                 =>'must wietter ',
+    'Add Your Offer'                      =>'    Add Your Offer',
+    'offer Name ar'                          =>'offer Name aribc',
+    'offer Name en'                          =>'offer Name en',
+    'offer Price'                         =>'offer Price',
+    'offer dataitls ar'                      =>'offer dataitls ar',
+    'offer dataitls en'                      =>'offer dataitls en',
+    'Save Offer'                          =>'Save Offer',
+    'offer Name'                         =>'offer Name',
+    'offer dataitls'                     =>'offer dataitls',
+    'operation'                          =>'control',
+    'update'                            =>'update',
+    'offer photo'                      =>'select offer photo',
+    'edit Your Offer'                   =>'edit Your Offer',
 ];

@@ -1,15 +1,21 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\offerRequest;
 use App\Models\Offer;
-
+use App\Models\Video;
+use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use LaravelLocalization;
 
+use App\Events\VideoVieweer;
 class CrudController extends Controller
 {
 
+    use OfferTrait;
     public function __construct()
     {
 
@@ -31,39 +37,72 @@ class CrudController extends Controller
 public function create(){
     return view('offers.create');
 }
-public function store(Request $request){
+public function store(offerRequest $request){
    //validate data before insert to database
 
 
-    $rules = $this->getRules();
-    $messages = $this->getMessages();
-    $validator = Validator::make($request->all(),$rules,$messages);
-    if($validator->fails()){
-        return redirect()->back()->withErrors($validator)->withInput($request->all());
-    }
+    //$rules = $this->getRules();
+    //$messages = $this->getMessages();
+    //$validator = Validator::make($request->all(),$rules,$messages);
+    //if($validator->fails()){
+    //    return redirect()->back()->withErrors($validator)->withInput($request->all());
+   // }
+
+    $file_name = $this->saveIamage($request->photo,'images/offers');
+
 
     //insert
     Offer::create([
-       'name'     =>$request->name,
+       'name_ar'     =>$request->name_ar,
+       'name_en'     =>$request->name_en,
        'price'    =>$request->price,
-        'details' =>$request->details,
+        'details_ar' =>$request->details_ar,
+        'details_en' =>$request->details_en,
+        'photo' =>$file_name
     ]);
     return redirect()->back()->with(['success' => 'تم اضافه العرض بنجاح']);
 }
-protected  function  getMessages(){
-    return $messages = [
-        'name.required' => __('messages.offername require'),
-        'name.unique'=> __('messages.offernameunique'),
-        'price.numeric' => __('messages.offerpricenumeric'),
-        'price.required' => __('messages.offerpricerequired'),
-        'details.required'=> __('messages.offerdatailsrequire'),
-    ];
+
+public function getAlloffers(){
+     $offers = Offer::select('id','price',
+         'name_'.LaravelLocalization::getCurrentLocale().' as name',
+         'details_'.LaravelLocalization::getCurrentLocale().' as details'
+
+     )->get(); //return collction
+
+     return view('offers.all',compact('offers'));
 }
-protected  function  getRules(){
-    return $rules = [
-        'name' =>'required|max:100|unique:offers,name',
-        'price' =>'required|numeric',
-        'details' =>'required',
-    ];
+
+public function editOffer($offer_id){
+    //Offer::findOrFail($offer_id);
+  $offer =  Offer::find($offer_id);
+
+  if(!$offer)
+      return redirect()->back();
+    $offer = Offer::select('id','name_ar','name_en','details_ar','details_en','price')->find($offer_id);
+
+    return view('offers.edit',compact('offer'));
+
+   return $offer_id;
+
+}
+public function updateOffer(offerRequest $request , $offer_id){
+
+    $offer = Offer::find($offer_id);
+
+    if(!$offer)
+        return redirect()->back();
+    // $offer->update($request -> all());
+   /* $offer->update([
+        'name_ar' =>$request->name_ar,
+        'name_en' =>$request->name_en,
+    ]);*/
+
+    return redirect()->back()->with(['success' => 'تم تعديل العرض بنجاح']);
+}
+public function getVideo(){
+    $video = Video::first();
+    event(new VideoVieweer($video));
+    return view('video')->with('video',$video);
 }
 }

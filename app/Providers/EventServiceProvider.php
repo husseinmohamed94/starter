@@ -7,6 +7,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+use App\Events\VideoVieweer;
+
+use App\Listeners\IncreaseCounter;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -17,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+
+        VideoVieweer::class => [
+        IncreaseCounter::class,
         ],
     ];
 

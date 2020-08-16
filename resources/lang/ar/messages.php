@@ -13,13 +13,26 @@ return [
     |
     */
 
-    'hello gus' => 'اهلا بكم ومرحيا',
-    'welcom'   => 'اهلا',
-    'offername require' =>'اسم العرض مطلوبا',
-    'offernameunique'  => 'اسم العرض موجود سابقا',
-    'offerpricenumeric' => 'السعر يحب  ن يكون ارقام',
-    'offerpricerequired'=>'السعر مطلوب',
-    'offerdatailsrequire' =>'يجب كتباه التفاصيل ',
+    'hello gus'                            => 'اهلا بكم ومرحيا',
+    'welcom'                               => 'اهلا',
+    'offername require'                    =>'اسم العرض مطلوبا',
+    'offernameunique'                      => 'اسم العرض موجود سابقا',
+    'offerpricenumeric'                    => 'السعر يحب  ن يكون ارقام',
+    'offerpricerequired'                   =>'السعر مطلوب',
+    'offerdatailsrequire'                  =>'يجب كتباه التفاصيل ',
+    'Add Your Offer'                       =>'اضافه عرض جديد ',
+    'offer Name ar'                           =>'  اسم العرض بالعربي',
+    'offer Name en'                           =>' اسم العرض بانجلش',
+    'offer Price'                          =>'سعر العرض',
+    'offer dataitls ar'                       =>'تفاصيل العرض بالعربي',
+    'offer dataitls en'                       =>'   بتفاصيل العرض بانجلش',
+    'Save Offer'                           =>'حفظ العرض',
+    'offer Name'                         =>'اسم العرض',
+    'offer dataitls'                     =>'تفاصيل العرض ',
+    'operation'                          =>'التحكم',
+    'update'                            =>'تحديث',
+'offer photo'                           =>'اختار صوره',
 
+    'edit Your Offer'                =>'تعديل اسم العرض'
 
 ];
