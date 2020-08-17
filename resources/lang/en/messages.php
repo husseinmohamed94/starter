@@ -33,5 +33,9 @@ return [
     'operation'                          =>'control',
     'update'                            =>'update',
     'offer photo'                      =>'select offer photo',
+    'offershowphoto'                   =>'photo',
     'edit Your Offer'                   =>'edit Your Offer',
+    'delete'                   => 'delete',
+    'offernotexist'                     =>'offer not exist',
+    'offerdeletesucces'                 =>'delete succesfly'
 ];

@@ -66,7 +66,8 @@ public function store(offerRequest $request){
 public function getAlloffers(){
      $offers = Offer::select('id','price',
          'name_'.LaravelLocalization::getCurrentLocale().' as name',
-         'details_'.LaravelLocalization::getCurrentLocale().' as details'
+         'details_'.LaravelLocalization::getCurrentLocale().' as details',
+         'photo'
 
      )->get(); //return collction
 
@@ -104,5 +105,17 @@ public function getVideo(){
     $video = Video::first();
     event(new VideoVieweer($video));
     return view('video')->with('video',$video);
+}
+
+public function delete($offer_id){
+//check if odder id exists
+ $offer = offer::find($offer_id);  //offer ::whwer('id','$offer_id')->first();
+if(!$offer)
+return redirect()->back()->with(['error' =>__('messages.offernotexist')]);
+
+$offer->delete();
+return redirect()->route('offers.all')->with(['success' =>__('messages.offerdeletesucces')]);
+
+
 }
 }

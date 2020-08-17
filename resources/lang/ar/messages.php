@@ -32,7 +32,11 @@ return [
     'operation'                          =>'التحكم',
     'update'                            =>'تحديث',
 'offer photo'                           =>'اختار صوره',
+'offershowphoto'                        =>'صوره العرض',
 
-    'edit Your Offer'                =>'تعديل اسم العرض'
+    'edit Your Offer'                =>'تعديل اسم العرض',
+    'delete'                =>'حذف',
+    'offernotexist'                  =>'العرض غير موجود',
+    'offerdeletesucces'             =>'تم الحذف بنجاح'
 
 ];
