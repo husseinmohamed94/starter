@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', function () { return 'dashboard';
-});
+Route::get('/dashboard', function () { return 'not aduite';
+})->name('Not.adult');
 
 Route::get('/redirect/{service}','SocialController@redirect');
 Route::get('/callback/{service}','SocialController@callback');
@@ -52,9 +52,41 @@ Route::group(['middleware'=>'auth'],function() {
 
         });
 
-        Route::get('youtube', 'CrudController@getVideo');
-
-
+      
     });
+    Route::get('youtube', 'CrudController@getVideo')->middleware('auth');
 
 });
+
+################## BEgin Ajax routes ######################
+
+Route::group(['prefix'=>'ajax-offers'],function(){
+Route::get('create','OfferController@create');
+Route::post('store','OfferController@store')->name('ajax.offers.store');
+Route::get('all','OfferController@all')->name('ajax.offers.all');
+Route::post('delete','OfferController@delete')->name('ajax.offers.delete');
+Route::get('edit/{offer_id}','OfferController@edit')->name('ajax.offers.edit');
+Route::post('updata','OfferController@updata')->name('ajax.offers.updata');
+
+
+});
+
+
+################## end Ajax routes #######################
+
+
+################## Authentiction &&  Guards######################
+Route::group(['middleware'=>'checkAge','namespace'=>'Auth'],function(){
+
+Route::get('adults','CustomAuthController@adualt')->name('adualt');
+});
+
+Route::get('site','Auth\CustomAuthController@site')->middleware('auth:web')->name('site');
+Route::get('admin','Auth\CustomAuthController@admin')->middleware('auth:admin')->name('admin');
+
+Route::get('admin/login','Auth\CustomAuthController@adminlogin')->name('admin.login');
+
+Route::post('admin/login','Auth\CustomAuthController@checkadminlogin')->name('save.admin.login');
+
+
+################## end Authentiction &&  Guards######################

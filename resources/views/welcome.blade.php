@@ -69,7 +69,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Starter
                 </div>
                     <h3>{{__('messages.welcom')}}</h3>
                  {{-- <p>{{$obj->name}} -- {{$obj->id}} </p>  --}}

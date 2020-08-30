@@ -93,7 +93,7 @@ public function updateOffer(offerRequest $request , $offer_id){
 
     if(!$offer)
         return redirect()->back();
-    // $offer->update($request -> all());
+     $offer->update($request -> all());
    /* $offer->update([
         'name_ar' =>$request->name_ar,
         'name_en' =>$request->name_en,
