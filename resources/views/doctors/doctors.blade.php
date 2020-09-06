@@ -16,16 +16,20 @@
                         <th scope="col">#ID</th>
                         <th scope="col">name</th>
                         <th scope="col">title</th>
+                        <th scope="col">operation</th>
+
                         </tr>
                     </thead>
 
                     <tbody>
                         @if(isset($doctors) && $doctors->count() > 0 )
-                        @foreach($doctors as $doctors)
+                        @foreach($doctors as $doctor)
                             <tr>
-                            <th scope="row">{{$doctors->id}}</th>
-                            <td>{{$doctors->name}}</td>
-                            <td>{{$doctors->title}}</td>
+                            <th scope="row">{{$doctor->id}}</th>
+                            <td>{{$doctor->name}}</td>
+                            <td>{{$doctor->title}}</td>
+                            <td><a href="{{route('doctors.services',$doctor->id)}}" class="btn btn-success">عرض الخدمات </a></td>
+
                             </tr>
                             @endforeach
                             @endif

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Hosptail;
-
+use App\Models\Service;
 
 use App\User;
 use App\Models\phone;
@@ -84,7 +84,6 @@ class RelationsController extends Controller
         public function doctors($hostpitalid){
             $hosptial = Hosptail::find($hostpitalid);
             $doctors = $hosptial->doctors;
-
             return view('doctors.doctors',compact('doctors'));
         }
 
@@ -118,10 +117,39 @@ class RelationsController extends Controller
             $hosptial->delete();
             return redirect()->back()->with(['success' => 'تم حذف  بنجاح']);
 
-            
+        }
+
+        public function getDoctorServices(){
+       //    $doctor = Doctor::find(1);
+     return      $doctor = Doctor::with('services')->find(1);
+      // return    $doctor->services;
 
         }
 
+        public function getservicesDoctor(){
+        return    $doctors = Service::with(['doctors'=>function($q){
+            $q->select('doctors.id','name','title');
+        }])->find(1);
+            
+        }
 
+        public function getdoctorserviscebyid($dortor_id){
+                $doctor = Doctor::find($dortor_id);
+                $services = $doctor->services;
+                $doctors = Doctor::select('id','name')->get();
+                $allservices = Service::select('id','name')->get();
+                return view('doctors.service',compact('services','doctors','allservices'));
+        }
 
+        public function saveServicetodoctor(Request $request){
+            $doctor = Doctor::find($request->doctor_id);
+            if(!$doctor)
+            return abort('404');
+
+            //$doctor->services()->attach($request->allservices); //many to many insert to database
+           // $doctor->services()->sync($request->allservices); //many to many insert to database
+             $doctor->services()->syncWithoutDetaching($request->allservices); //many to many insert to database
+
+            return 'success';
+        } 
     }

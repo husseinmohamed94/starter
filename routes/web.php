@@ -113,4 +113,18 @@ Route::get('hospitals_has-male','Relation\RelationsController@hospitalsHasMale')
 
 Route::get('hospitals_not_has','Relation\RelationsController@hospitalsNotHasDoctor');
 
+Route::get('doctors-services/{doctor_id}','Relation\RelationsController@getdoctorserviscebyid')->name('doctors.services');
+Route::post('saveServicetodoctor','Relation\RelationsController@saveServicetodoctor')->name('save.doctor.services');
+
  ######################end relations ###################
+
+
+
+ ###################### relations   one to many Route ###################
+Route::get('doctors-services','Relation\RelationsController@getDoctorServices');
+Route::get('services-doctors','Relation\RelationsController@getservicesDoctor');
+
+
+ ######################end relations ###################
+
+ 

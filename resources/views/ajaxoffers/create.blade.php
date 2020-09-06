@@ -84,6 +84,14 @@
 <script>
 $(document).on('click','#save_offer',function(e){
 e.preventDefault();
+
+$('#name_ar_error').text('');
+$('#name_en_error').text('');
+$('#price_error').text('');
+$('#details_ar_error').text('');
+$('#details_en_error').text('');
+$('#photo_error').text('');
+
 var formData = new FormData($('#offerForm')[0]);
 
 
@@ -104,12 +112,13 @@ var formData = new FormData($('#offerForm')[0]);
     },error: function(reject){
 
         var response = $.parseJSON(reject.responseText);
-        $.each(respons.errors,function(key,val){
+        $.each(response.errors,function(key,val){
             $("#" + key + "_error").text(val[0]);
         });
     }
 
         });
+        
     });
     </script>
 
