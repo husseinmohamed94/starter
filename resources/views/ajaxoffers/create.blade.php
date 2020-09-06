@@ -26,49 +26,42 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">{{__('messages.offer Name ar')}}</label>
                                 <input type="text" class="form-control" name="name_ar"  placeholder="{{__('messages.offer Name ar')}} ">
-                                @error('name_ar')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                <small  id="name_ar_error" class="form-text text-danger"></small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">{{__('messages.offer Name en')}}</label>
                                 <input type="text" class="form-control" name="name_en"  placeholder="{{__('messages.offer Name en')}} ">
-                                @error('name_en')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                <small id="name_en_error" class="form-text text-danger"></small>
+                                
                             </div>
 
                         <div class="form-group">
                                 <label for="exampleInputPassword1">{{__('messages.offer Price')}}</label>
                                 <input type="text" class="form-control" name="price" placeholder="{{__('messages.offer Price')}}" >
-                            @error('price')
-                            <small class="form-text text-danger">{{$message}}</small>
-                            @enderror
+                            <small  id="price_error" class="form-text text-danger"></small>
 
                         </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">{{__('messages.offer dataitls ar')}}</label>
                                 <input type="text" class="form-control" name="details_ar" placeholder="{{__('messages.offer dataitls ar')}}" >
-                                @error('details_ar')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                <small  id="details_ar_error" class="form-text text-danger"></small>
 
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">{{__('messages.offer dataitls en')}}</label>
                                 <input type="text" class="form-control" name="details_en" placeholder="{{__('messages.offer dataitls en')}}" >
-                                @error('details_en')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                
+                                <small  id="details_en_error" class="form-text text-danger"></small>
+                                
 
                                     </div>
                     <div class="form-group">
                                 <label for="exampleInputPassword1">{{__('messages.offer photo')}}</label>
                                 <input type="file" class="form-control" name="photo" >
-                                @error('photo')
-                                <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                
+                                <small  id="photo_error" class="form-text text-danger"></small>
+                                
 
                                 </div>
 
@@ -110,9 +103,13 @@ var formData = new FormData($('#offerForm')[0]);
     }
     },error: function(reject){
 
+        var response = $.parseJSON(reject.responseText);
+        $.each(respons.errors,function(key,val){
+            $("#" + key + "_error").text(val[0]);
+        });
     }
 
-    });
+        });
     });
     </script>
 

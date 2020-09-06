@@ -90,3 +90,27 @@ Route::post('admin/login','Auth\CustomAuthController@checkadminlogin')->name('sa
 
 
 ################## end Authentiction &&  Guards######################
+
+ ###################### relations   one to one Route ###################
+Route::get('has-one','Relation\RelationsController@hasoneRelation');
+Route::get('has-one_reverse','Relation\RelationsController@hasoneRelationReverse');
+Route::get('has-user-phone','Relation\RelationsController@getuserhasphone');
+Route::get('has-not-phone','Relation\RelationsController@getusernothasphone');
+
+ ######################end relations ###################
+
+
+ 
+ ###################### relations   one to many Route ###################
+Route::get('hospital-has-many','Relation\RelationsController@getHosptaiDoctor');
+Route::get('hospitals','Relation\RelationsController@hospitals');
+Route::get('doctors/{hostpitalid}','Relation\RelationsController@doctors')->name('hospital.doctors');
+Route::get('hospitals/{hostpitalid}','Relation\RelationsController@deleteHospital')->name('hospital.delete');
+
+Route::get('hospitals_has_doctors','Relation\RelationsController@hospitalsHasDoctor');
+
+Route::get('hospitals_has-male','Relation\RelationsController@hospitalsHasMale');
+
+Route::get('hospitals_not_has','Relation\RelationsController@hospitalsNotHasDoctor');
+
+ ######################end relations ###################
