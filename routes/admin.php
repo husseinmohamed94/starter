@@ -11,8 +11,10 @@
 |
 */
 /*
-Route::get('/admins', function () {
+Route::get('/admin', function () {
     return 'hellow admin';
 });
-*/
 
+
+Route::post('saveServicetodoctor','Relation\RelationsController@saveServicetodoctor')->name('save.doctor.services');
+*/

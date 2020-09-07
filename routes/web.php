@@ -128,3 +128,11 @@ Route::get('services-doctors','Relation\RelationsController@getservicesDoctor');
  ######################end relations ###################
 
  
+ ###################### relations   hasOneThrough Route ###################
+Route::get('has-one-through','Relation\RelationsController@getpatientDoctor');
+Route::get('has-one-many','Relation\RelationsController@getCountryDoctors');
+
+
+ ######################end relations  hasOneThrough ###################
+
+ 

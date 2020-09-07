@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Hosptail;
 use App\Models\Service;
+use App\Models\Patient;
+use App\Models\Country;
 
 use App\User;
 use App\Models\phone;
@@ -152,4 +154,15 @@ class RelationsController extends Controller
 
             return 'success';
         } 
+
+        public function getpatientDoctor(){
+            $patient = Patient::find(2);
+       return  $patient->doctor;
+        }
+        public function getCountryDoctors(){
+      return      $country =  Country::with('doctors')->find(2);   
+        // $doctor = $country->doctors;
+    
+
+        }
     }
