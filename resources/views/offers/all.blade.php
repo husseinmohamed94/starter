@@ -76,8 +76,13 @@
             <td><a href="{{url('offers/edit/'.$offer->id)}}" class="btn btn-success" >{{__('messages.update')}}</a> 
             <a href="{{route('offers.delete',$offer->id)}}" class="btn btn-danger" >{{__('messages.delete')}}</a>  </td>
         </tr>
+       
 @endforeach
+
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">{!! $offers->links() !!}
+  </div>
+    
     </body>
 </html>

@@ -18,4 +18,11 @@ public function hosptital(){
 public function services(){
     return $this->belongsToMany('App\Models\Service','doctor_services','doctor_id','service_id','id','id');
 }
+//accessors
+public function getGenderAttribute($val){
+  return  $val == 1 ? 'male':'female';
+}
+
+//mutators
+
 }

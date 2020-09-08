@@ -12,7 +12,7 @@
 */
 
 
-
+define('PAGTNATION_COUNT',5);
 
 Auth::routes(['verify'=>true]);
 
@@ -47,8 +47,9 @@ Route::group(['middleware'=>'auth'],function() {
             Route::get('edit/{offer_id}', 'CrudController@editOffer');
             Route::post('update/{offer_id}', 'CrudController@updateOffer')->name('offers.update');
             Route::get('delete/{offer_id}', 'CrudController@delete')->name('offers.delete');
-
             Route::get('all', 'CrudController@getAlloffers')->name('offers.all');
+
+            Route::get('get-all-inactive-offer', 'CrudController@getAllInactiveoffers');
 
         });
 
@@ -135,4 +136,11 @@ Route::get('has-one-many','Relation\RelationsController@getCountryDoctors');
 
  ######################end relations  hasOneThrough ###################
 
- 
+  ###################### Begin accessors and mutators ###################
+
+  Route::get('accessors','Relation\RelationsController@getDoctors');
+
+
+
+
+######################  accessors and mutators ###########################

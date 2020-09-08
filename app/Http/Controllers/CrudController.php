@@ -10,6 +10,7 @@ use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use LaravelLocalization;
+use App\Scopes\offerScopes;
 
 use App\Events\VideoVieweer;
 class CrudController extends Controller
@@ -64,12 +65,21 @@ public function store(offerRequest $request){
 }
 
 public function getAlloffers(){
-     $offers = Offer::select('id','price',
+    /* $offers = Offer::select('id','price',
          'name_'.LaravelLocalization::getCurrentLocale().' as name',
          'details_'.LaravelLocalization::getCurrentLocale().' as details',
          'photo'
 
      )->get(); //return collction
+
+*/
+// paginate result
+     $offers = Offer::select('id','price',
+     'name_'.LaravelLocalization::getCurrentLocale().' as name',
+     'details_'.LaravelLocalization::getCurrentLocale().' as details',
+     'photo'
+
+ )->paginate(PAGTNATION_COUNT); //return collction
 
      return view('offers.all',compact('offers'));
 }
@@ -116,6 +126,17 @@ return redirect()->back()->with(['error' =>__('messages.offernotexist')]);
 $offer->delete();
 return redirect()->route('offers.all')->with(['success' =>__('messages.offerdeletesucces')]);
 
+}
+
+       
+public function getAllInactiveoffers(){
+ //return   $inactiveoffer =   offer::inactive()->get();  //all inactive offers
+ //global scope
+ //return $inactiveoffer =   offer::get();  //all inactive offers
+ return $inactiveoffer =   offer::withoutGlobalScope(offerScopes::class)->get();  //all inactive offers
 
 }
+       
+    //   how to remove globle scope 
+   // User::withoutGlobalScope(AgeScope::class)->get();
 }
